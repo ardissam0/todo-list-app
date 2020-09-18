@@ -21,7 +21,7 @@ function App() {
     db.collection('todos').add({
       todo: input,
       timestamp: firebase.firestore.FieldValue.serverTimestamp()
-    }));
+    });
 
     setTodos([...todos, input]);
     setInput('');
