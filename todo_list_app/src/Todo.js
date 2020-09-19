@@ -1,7 +1,11 @@
 import React, {useState} from 'react';
 import './Todo.css';
-import {List, ListItem, ListItemText, ListItemAvatar, ImageIcon, Modal, Button } from '@material-ui/core';
-import { DeleteForeverIcon } from '@material-ui/icons/DeleteForever';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import Modal from '@material-ui/core/Modal';
+import Button from '@material-ui/core/Button';
+import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import { makeStyles } from '@material-ui/core/styles';
 import db from './firebase';
 
@@ -46,8 +50,6 @@ function Todo(props) {
         </Modal>
         <List>
             <ListItem>
-                <ListItemAvatar>
-                </ListItemAvatar>
                 <ListItemText primary={props.todo.todo}/>
             </ListItem>
             <button onClick={e => setOpen(true)}>Edit</button>
