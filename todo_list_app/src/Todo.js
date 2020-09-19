@@ -52,7 +52,7 @@ function Todo(props) {
         </Modal>
         <List style={{display: 'inline-block',}}>
             <ListItem>
-                <ListItemText><input type="checkbox"/>{props.todo.todo}</ListItemText> 
+                <ListItemText primary={props.todo.todo} /> 
             </ListItem>
             <EditIcon style= {{cursor: 'pointer'}} onClick={e => setOpen(true)} />
             <DeleteForeverIcon style= {{cursor: 'pointer'}} onClick={event => db.collection('todos').doc(props.todo.id).delete()}/> 
