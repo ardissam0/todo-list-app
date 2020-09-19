@@ -1,0 +1,22 @@
+.App {
+  text-align: center;
+  border: 10px solid #3F51B5;
+  word-break: break-all;
+  margin: 10% auto;
+  min-height: 400px;
+  max-width: 40%;
+  display: block;
+  padding: 3%;
+
+  .btn-app-submit {
+    @media(max-width: 750px) {
+      margin-top: 10px;
+    }
+  }
+
+  .ul-app-todos {
+    width: 75%;
+    display: flex;
+    flex-wrap: wrap;
+  }
+}

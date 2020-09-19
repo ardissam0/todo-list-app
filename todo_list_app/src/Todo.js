@@ -1,11 +1,12 @@
 import React, {useState} from 'react';
-import './Todo.css';
+import './Todo.scss';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Modal from '@material-ui/core/Modal';
 import Button from '@material-ui/core/Button';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
+import EditIcon from '@material-ui/icons/Edit';
 import { makeStyles } from '@material-ui/core/styles';
 import db from './firebase';
 
@@ -38,22 +39,23 @@ function Todo(props) {
 
     return (
         <>
-        <Modal 
+        <Modal style={{margin: '10% 25% auto', position: 'absolute', top: '25%'}} 
             open={open}
             onClose={e => setOpen(false)}
         >
-            <div className={classes.paper}>
-                <h1>open</h1>
+            <form>
+            <div style={{border: '10px solid #3F51B5',textAlign: 'center'}}  className={classes.paper}>
                 <input placeholder = {props.todo.todo} value={input} onChange={event => setInput(event.target.value)} />
-                <Button onClick={updateTodo}>Update</Button>
+                <Button type='submit' style={{marginLeft: '10px'}} onClick={updateTodo}>Update</Button>
             </div>
+            </form>
         </Modal>
-        <List>
+        <List style={{display: 'inline-block',}}>
             <ListItem>
-                <ListItemText primary={props.todo.todo}/>
+                <ListItemText><input type="checkbox"/>{props.todo.todo}</ListItemText> 
             </ListItem>
-            <button onClick={e => setOpen(true)}>Edit</button>
-            <DeleteForeverIcon onClick={event => db.collection('todos').doc(props.todo.id).delete()}/> 
+            <EditIcon style= {{cursor: 'pointer'}} onClick={e => setOpen(true)} />
+            <DeleteForeverIcon style= {{cursor: 'pointer'}} onClick={event => db.collection('todos').doc(props.todo.id).delete()}/> 
         </List>
         </>
     )

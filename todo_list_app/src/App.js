@@ -4,7 +4,7 @@ import FormControl from '@material-ui/core/FormControl';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import Todo from './Todo';
-import './App.css';
+import './App.scss';
 import db from './firebase';
 import firebase from 'firebase';
 
@@ -31,17 +31,17 @@ function App() {
   }
   return (
     <div className="App">
-      <h1>Hello world</h1>
+      <h1>Todo App</h1>
       <form>
         <FormControl>
           <InputLabel>Write a Todo</InputLabel>
           <Input value={input} onChange={event => setInput(event.target.value)} />
         </FormControl>
-        <Button disabled={!input} type='submit' onClick={addTodo} variant="contained" color="primary">
+        <Button className='btn-app-submit' disabled={!input} type='submit' onClick={addTodo} variant="contained" color="primary">
           Add Todo
         </Button>
       </form>
-      <ul>
+      <ul className="ul-app-todos">
         {todos.map(todo => (
           <Todo todo={todo} />
         ))}
