@@ -8,6 +8,13 @@
   display: block;
   padding: 3%;
 
+  
+  @media(max-width: 750px) {
+      max-width: 89%;
+      border: none;
+      
+  }
+
   .btn-app-submit {
     @media(max-width: 750px) {
       margin-top: 10px;

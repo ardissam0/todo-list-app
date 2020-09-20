@@ -10,14 +10,20 @@ import EditIcon from '@material-ui/icons/Edit';
 import { makeStyles } from '@material-ui/core/styles';
 import db from './firebase';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
     paper: {
         position: 'absolute',
-        width: 400,
-        backgroundColor: theme.palette.background.paper,
-        border: '2px solid #000',
-        boxShadow: theme.shadows[5],
-        padding: theme.spacing(2, 4, 3),
+        margin: '10% 30% auto',
+        minWidth: 400,
+        backgroundColor: 'white',
+        border: '10px solid #3F51B5',
+        padding: '1%',
+        textAlign: 'center',
+        ['@media (max-width: 750px)'] : {
+            minWidth: 200,
+            margin: '10% 20% auto',
+            padding: '2%',
+        }
     },
 }));
 
@@ -25,10 +31,6 @@ function Todo(props) {
     const classes = useStyles();
     const [open, setOpen] = useState(false);
     const [input, setInput] = useState();
-
-    const handleOpen = () => {
-        setOpen(true);
-    };
 
     const updateTodo = () => {
         db.collection('todos').doc(props.todo.id).set({
@@ -39,23 +41,23 @@ function Todo(props) {
 
     return (
         <>
-        <Modal style={{margin: '10% 25% auto', position: 'absolute', top: '25%'}} 
+        <Modal style={{verticalAlign: 'baseline'}}
             open={open}
             onClose={e => setOpen(false)}
         >
             <form>
-            <div style={{border: '10px solid #3F51B5',textAlign: 'center'}}  className={classes.paper}>
+            <div className={classes.paper}>
                 <input placeholder = {props.todo.todo} value={input} onChange={event => setInput(event.target.value)} />
                 <Button type='submit' style={{marginLeft: '10px'}} onClick={updateTodo}>Update</Button>
             </div>
             </form>
         </Modal>
         <List style={{display: 'inline-block',}}>
-            <ListItem>
-                <ListItemText primary={props.todo.todo} /> 
-            </ListItem>
+            <ListItem style ={{borderBottom: '1px solid #3F51B5'}}>
+                <ListItemText style={{marginRight: '5px'}} primary={props.todo.todo} /> 
             <EditIcon style= {{cursor: 'pointer'}} onClick={e => setOpen(true)} />
             <DeleteForeverIcon style= {{cursor: 'pointer'}} onClick={event => db.collection('todos').doc(props.todo.id).delete()}/> 
+            </ListItem>
         </List>
         </>
     )
