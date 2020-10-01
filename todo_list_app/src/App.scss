@@ -1,3 +1,7 @@
+* {
+  margin: 0;
+}
+
 .App {
   text-align: center;
   border: 10px solid #3F51B5;
@@ -17,7 +21,7 @@
 
   .btn-app-submit {
     margin-left: 10px;
-    
+
     @media(max-width: 750px) {
       margin-top: 10px;
     }
